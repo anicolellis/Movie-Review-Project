@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms'
-import { CommonModule } from '@angular/common';
 import { MovieService } from '../movie.service';
 
 @Component({

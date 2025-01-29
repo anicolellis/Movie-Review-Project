@@ -5,10 +5,11 @@ import {Movie} from '../movie';
 import { MovieComponent } from '../movie/movie.component';
 //import {HousingService} from '../housing.service';
 import { MovieService } from '../movie.service';
+import { MovieFormComponent } from '../movie-form/movie-form.component';
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, MovieComponent],
+  imports: [CommonModule, MovieComponent, MovieFormComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
