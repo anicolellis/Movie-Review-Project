@@ -1,0 +1,12 @@
+<section class="movie-apply">
+    <h2 class="section-heading">Add a new movie to our site</h2>
+    <form [formGroup]="mForm" (submit)="submitMovie()">
+        <label for="title">Title</label>
+        <input id="title" type="text" formControlName="title" />
+
+        <label for="director">Director</label>
+        <input id="director" type="text" formControlName="director" />
+
+        <button type="submit" class="primary">Submit</button>
+    </form>
+</section>
