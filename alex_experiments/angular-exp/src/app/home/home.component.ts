@@ -22,9 +22,14 @@ export class HomeComponent {
   @ViewChild(MovieFormComponent) child!:MovieFormComponent;
 
   constructor() {
-    this.movieService.getAllMovies().then((movieList: Movie[]) => {
+    /*this.movieService.getAllMovies().then((movieList: Movie[]) => {
       this.movieList = movieList;
       this.filteredMovieList = movieList;
+    });*/
+    this.movieService.getAllMovies().subscribe(data => {
+      this.movieList = data;
+      this.filteredMovieList = data;
+      console.log(data);
     });
   }
 
@@ -43,9 +48,9 @@ export class HomeComponent {
       this.child.mForm.value.title ?? '',
       this.child.mForm.value.director ?? '',
     );
-    this.movieService.getAllMovies().then((movieList: Movie[]) => {
-      this.movieList = movieList;
-      this.filteredMovieList = movieList;
+    this.movieService.getAllMovies().subscribe(data => {
+      this.movieList = data;
+      this.filteredMovieList = data;
     });
   }
 }
