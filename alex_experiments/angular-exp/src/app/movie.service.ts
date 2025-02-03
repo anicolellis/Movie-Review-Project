@@ -10,10 +10,10 @@ export class MovieService {
   //url = 'http://localhost:3000/movies';
   url = 'http://localhost:8080/movies/';
   
-  getAllMovies(): Observable<Movie[]> {
-    //const data = await fetch(this.url);
-    //return (await data.json()) ?? [];
-    return this.http.get<Movie[]>(`${this.url}all`);
+  async getAllMovies(): Promise<Movie[]> {
+    const data = await fetch(`${this.url}all`);
+    return (await data.json());
+    //return this.http.get<Movie[]>(`${this.url}all`);
   }
   /*
   async getMovieById(id: number): Promise<Movie | undefined> {
@@ -21,9 +21,14 @@ export class MovieService {
     return (await data.json()) ?? {};
   }
   */
-  submitMovie(title: string, director: string): Observable<string> {
+  async submitMovie(title: string, director: string): Promise<string> {
     //console.log(`New movie data: ${title} by ${director}.`);
-    return this.http.post<string>(this.url, {"title": title, "director": director});
+    
+    const data = await fetch(this.url, {method: 'POST',
+      headers: new Headers({'content-type': 'application/json'}),
+      body: JSON.stringify({"title": title, "director": director})
+    });
+    return (await data.json());
   }
-  constructor(private http: HttpClient) { }
+  constructor() { }
 }

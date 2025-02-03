@@ -22,15 +22,16 @@ export class HomeComponent {
   @ViewChild(MovieFormComponent) child!:MovieFormComponent;
 
   constructor() {
-    /*this.movieService.getAllMovies().then((movieList: Movie[]) => {
+    this.movieService.getAllMovies().then((movieList: Movie[]) => {
       this.movieList = movieList;
       this.filteredMovieList = movieList;
-    });*/
-    this.movieService.getAllMovies().subscribe(data => {
+      console.log(movieList);
+    });
+    /*this.movieService.getAllMovies().subscribe(data => {
       this.movieList = data;
       this.filteredMovieList = data;
       console.log(data);
-    });
+    });*/
   }
 
   filterResults(text: string) {
@@ -47,10 +48,12 @@ export class HomeComponent {
     this.movieService.submitMovie(
       this.child.mForm.value.title ?? '',
       this.child.mForm.value.director ?? '',
-    );
-    this.movieService.getAllMovies().subscribe(data => {
-      this.movieList = data;
-      this.filteredMovieList = data;
+    ).then((data: string) => {
+      console.log(data);
+    });
+    this.movieService.getAllMovies().then((movieList: Movie[]) => {
+      this.movieList = movieList;
+      this.filteredMovieList = movieList;
     });
   }
 }
