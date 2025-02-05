@@ -31,4 +31,9 @@ public class MovieController {
     public @ResponseBody Iterable<Movie> getAllMovies() {
         return movieRepository.findAll();
     }
+
+    @GetMapping(path="/health")
+    public String healthCheck() {
+        return "Healthy";
+    }
 }
