@@ -42,20 +42,52 @@ public class MovieTests {
      */
 
     @Test
-	public void movieCreationTest() {
+	public void movieCRUDTest() {
+        /*
+         * Create fake movie data and send it via POST request.
+         */
         Movie testMovie = new Movie( "Test Title",
             2025, 120, "Action", 90, "Alex Nicolellis", "This is an example movie."
         );
         ObjectMapper mapper = new ObjectMapper();
         String jsonBody = mapper.writeValueAsString(testMovie);
-        Response r = RestAssured.given().
+        int testMovieId = RestAssured.given().
             contentType(ContentType.JSON).
-            body(jsonBody).
+            body(jsonBody). //note: I think I can just put the testMovie here, try it
             when().
-            post("/movies");
+            post("/movies").then().statusCode(200).
+            body("description",equals(testMovie.getDescription())).
+            extract().path("id");
 
-        assertEquals(200, r.getStatusCode());
-        assertEquals(jsonBody, r.getBody());
+        /*
+         * Retrieve the data using a GET request.
+         */
+        Movie m = RestAssured.get("movies/"+testMovieId).then()
+            .statusCode(200)
+            .body("description",equals(testMovie.getDescription()))
+            .extract().as(Movie.class);
+        
+        assertEquals(testMovie, m); //idk if the id will interfere with this
+
+        /*
+         * Update the data using a PUT request.
+         */
+        m.setDescription("This is an updated description");
+        Movie updatedMovie = RestAssured.given()
+            .contentType(ContentType.JSON)
+            .body(m) 
+            .when().put("movies/"+testMovieId).then()
+            .statusCode(200)
+            .body("description",equals(m.getDescription()))
+            .extract().as(Movie.class);
+
+        /*
+         * Delete the data using a DELETE request.
+         */
+        RestAssured.delete("movies/"+testMovieId).then()
+            .statusCode(200)
+            .body("description",equals(testMovie.getDescription()));
+
 	}
     
 }
