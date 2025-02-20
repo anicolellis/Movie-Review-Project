@@ -1,5 +1,7 @@
 package com.nicolellis.moviedb;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +17,7 @@ import lombok.Setter;
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) 
+    @JsonProperty(value="id")
     private Integer id;
 
     @Getter

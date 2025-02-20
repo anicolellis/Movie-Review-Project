@@ -55,17 +55,14 @@ public class MovieTests {
         
         //ObjectMapper mapper = new ObjectMapper();
         //String jsonBody = mapper.writeValueAsString(testMovie);
-        //int testMovieId = RestAssured.given().
-        String res = RestAssured.given().
+        int testMovieId = RestAssured.given().
             contentType(ContentType.JSON).
             body(testMovie). //note: I think I can just put the testMovie here, try it
             when().
             post("/movies").then().statusCode(200).
             body("description",equalTo(testMovie.getDescription())).
-            extract().asString();
-            //extract().path("id");
-        System.out.println(res);
-        int testMovieId = 153;
+            extract().path("id");
+
         /*
          * Retrieve the data using a GET request.
          */
