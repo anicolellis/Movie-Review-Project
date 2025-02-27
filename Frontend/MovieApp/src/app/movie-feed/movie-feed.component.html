@@ -1,6 +1,8 @@
 <section class="results">
-    <app-movie
-    *ngFor="let movie of filteredMovieList"
-    [movie]="movie"
-    ></app-movie>
+    @if (movieList$ | async; as movieList) {
+        <app-movie
+        *ngFor="let movie of movieList"
+        [movie]="movie"
+        ></app-movie>
+    }
 </section>
