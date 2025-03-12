@@ -9,7 +9,7 @@ import { MovieComponent } from '../movie/movie.component';
   selector: 'app-movie-feed',
   imports: [AsyncPipe, MovieComponent, CommonModule],
   templateUrl: './movie-feed.component.html',
-  styleUrl: './movie-feed.component.css'
+  styleUrls: ['./movie-feed.component.css', './movie.component.css']
 })
 export class MovieFeedComponent {
   movieList$!: Observable<Movie[]>;
