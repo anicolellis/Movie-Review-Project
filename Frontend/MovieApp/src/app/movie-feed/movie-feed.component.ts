@@ -15,9 +15,9 @@ export class MovieFeedComponent {
   movieList$!: Observable<Movie[]>;
   movieService: MovieService = inject(MovieService);
   
-  constructor() {}
+  constructor() { this.movieList$ = this.movieService.getAllMovies(); }
   
   ngOnInit(): void {
-    this.movieList$ = this.movieService.getAllMovies();
+    
   }
 }

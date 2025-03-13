@@ -1,3 +1,5 @@
 .movie-summary {
     border-style: solid;
+    padding: 10px;
+    text-align: center;
 }
