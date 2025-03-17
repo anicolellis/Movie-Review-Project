@@ -1,0 +1,9 @@
+.movie-summary {
+    border-style: solid;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    background-color:rgb(105, 105, 105);
+    border-color:black;
+    color:white;
+}
