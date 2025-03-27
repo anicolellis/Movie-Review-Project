@@ -1,8 +1,10 @@
-<section class="movie-header">
-    <h2 class="movie-title">{{ movie?.title }}</h2>
-    <p class="movie-subtitle">{{ movie?.release_year }} | {{ movie?.runtime }} | {{ movie?.director }} | {{ movie?.genre }}</p>
-</section>
-<section class="movie-details">
-    <h2 class="movie-description-header">Description:</h2>
-    <p class="movie-description">{{ movie?.description }}</p>
-</section>
+@if (movie$ | async; as movie) {
+    <section class="movie-header">
+        <h2 class="movie-title">{{ movie.title }}</h2>
+        <p class="movie-subtitle">{{ movie.release_year }} | {{ movie.runtime }} | {{ movie.director }} | {{ movie.genre }}</p>
+    </section>
+    <section class="movie-details">
+        <h2 class="movie-description-header">Description:</h2>
+        <p class="movie-description">{{ movie.description }}</p>
+    </section>
+}

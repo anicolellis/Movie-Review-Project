@@ -3,11 +3,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../movie';
 import { MovieService } from '../movie.service';
 import { Observable } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-movie-details',
-  imports: [CommonModule],
+  imports: [AsyncPipe, CommonModule],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.css'
 })
